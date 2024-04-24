@@ -41,4 +41,5 @@ logs/
 outputs/
 *.mp4
 trained_models/
+chats/
 
