@@ -17,6 +17,23 @@ import collections
 import gym
 import numpy as np
 
+import PIL
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+import gym
+from IPython import display
+import cv2
+
+def show_render(env):
+    plt.imshow(env.render(mode='rgb_array'))
+    display.display(plt.gcf())    
+    display.clear_output(wait=True)
+    
+# def show_render(env):
+#     rgb_array = env.render(mode='rgb_array')
+#     cv2.imshow('Environment', cv2.cvtColor(rgb_array, cv2.COLOR_RGB2BGR))
+#     cv2.waitKey(1)  # Wait for 1 millisecond to allow OpenCV to display the image
+
 # Custom environment wrapper
 class StreetFighterCustomWrapper(gym.Wrapper):
     def __init__(self, env, reset_round=True, rendering=False):
@@ -68,7 +85,8 @@ class StreetFighterCustomWrapper(gym.Wrapper):
 
         # Render the game if rendering flag is set to True.
         if self.rendering:
-            self.env.render()
+            # self.env.render()
+            show_render(self.env)
             time.sleep(0.01)
 
         for _ in range(self.num_step_frames - 1):
@@ -77,7 +95,9 @@ class StreetFighterCustomWrapper(gym.Wrapper):
             obs, _reward, _done, info = self.env.step(action)
             self.frame_stack.append(obs[::2, ::2, :])
             if self.rendering:
-                self.env.render()
+                # self.env.render()
+                show_render(self.env)
+                
                 time.sleep(0.01)
 
         curr_player_health = info['agent_hp']

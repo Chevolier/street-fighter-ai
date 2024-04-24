@@ -26,8 +26,11 @@ This project is based on the Python programming language and primarily utilizes 
 
 ```bash
 # Create a conda environment named StreetFighterAI with Python version 3.8.10
-conda create -n StreetFighterAI python=3.8.10
+conda create -p /home/ec2-user/SageMaker/efs/conda_envs/StreetFighterAI python=3.8.10
+# conda create -n StreetFighterAI python=3.8.10
 conda activate StreetFighterAI
+
+pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu117
 
 # Install Python libraries
 cd [parent_directory_of_project]/street-fighter-ai/main
@@ -35,7 +38,7 @@ pip install -r requirements.txt
 
 # Run script to locate gym-retro game folder
 cd ..
-python .\utils\print_game_lib_folder.py
+python ./utils/print_game_lib_folder.py
 ```
 
 After the console outputs the folder path, copy it to the file explorer and navigate to the corresponding path. This folder contains the game data files for "Street Fighter II: Special Champion Edition" within gym-retro, including the game ROM file and data configuration files. Copy the `Champion.Level12.RyuVsBison.state`, `data.json`, `metadata.json`, and `scenario.json` files from the `data/` folder of this project into the game data folder, replacing the original files (administrator privileges may be required). The `.state` file is a save state for the game's highest difficulty level, while the three `.json` files are gym-retro configuration files storing game information memory addresses (this project only uses [agent_hp] and [enemy_hp] for reading character health values in real-time).
