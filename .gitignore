@@ -40,3 +40,5 @@ images/
 logs/
 outputs/
 *.mp4
+trained_models/
+
