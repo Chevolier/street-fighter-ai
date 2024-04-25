@@ -20,6 +20,18 @@ import sys
 
 import keyboard
 
+import PIL
+from tqdm import tqdm
+import matplotlib.pyplot as plt
+import gym
+from IPython import display
+import cv2
+
+def show_render(env):
+    plt.imshow(env.render(mode='rgb_array'))
+    display.display(plt.gcf())    
+    display.clear_output(wait=True)
+
 class ActionGenerator(object):
 
     def __init__(self, buttons):
@@ -143,7 +155,7 @@ class SF2_Action(object):
 def start_testing():
     print('testing')
     env = retro.make(game='StreetFighterIISpecialChampionEdition-Genesis',
-                     state='two_player_ryu_ken',
+                     state='Champion.Level12.RyuVsBison', #'two_player_ryu_ken',
                      use_restricted_actions=retro.Actions.FILTERED,
                      players=2)
 
@@ -209,7 +221,8 @@ def start_testing():
 
     for action in action_list:
         obs = env.step(action)
-        env.render()
+        # env.render()
+        show_render(env)
 
     key_maps = dict()
 
@@ -253,7 +266,8 @@ def start_testing():
             elif key == 'l':
                 print ('skipping frame')
                 obs = env.step(null_action)
-                env.render()
+                # env.render()
+                show_render(env)
             else:
                 if (key in key_maps.keys()):
                     real_action = key_maps[key]
@@ -268,11 +282,13 @@ def start_testing():
                     for action in action_list:
                         print (action)
                         obs = env.step(action)
-                        env.render()
+                        # env.render()
+                        show_render(env)
 
                     for i in range(10):
                         obs = env.step(null_action)
-                        env.render()
+                        # env.render()
+                        show_render(env)
 
 
     # time.sleep(10)
