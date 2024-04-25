@@ -35,12 +35,10 @@ images/
 !/main/trained_models/ppo_ryu_2000000_steps_updated.*
 !/main/trained_models/ppo_ryu_2500000_steps_updated.*
 !/main/trained_models/ppo_ryu_3000000_steps_updated.*
-!/main/trained_models/ppo_ryu_7000000_steps_updated.*
 
 .ipynb_checkpoints/
 logs/
 outputs/
 *.mp4
-trained_models/
 chats/
 
