@@ -27,7 +27,8 @@ images/
 !/data/metadata.json
 !/data/scenario.json
 !/data/Gym Retro Integration.exe
-
+!/data/rom.md
+!/data/rom.sha
 
 # Model Files
 /main/trained_models/*
